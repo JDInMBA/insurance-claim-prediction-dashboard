@@ -63,7 +63,7 @@ export default function Home() {
 
     try {
       const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/predict`
-
+      console.log("API URL:", API_URL)
       const response = await fetch(API_URL, {
         method: "POST",
         headers: {
@@ -450,6 +450,7 @@ export default function Home() {
                     className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white shadow-2xl hover:shadow-3xl transition-all duration-500 text-lg font-bold py-6 rounded-2xl group"
                     size="lg"
                   >
+                    
                     {loading ? (
                       <>
                         <Loader2 className="mr-3 h-5 w-5 animate-spin" />
