@@ -164,18 +164,19 @@ export default function Home() {
           {/* Section: Prediction Simulator */}
           <section id="simulator" className="scroll-mt-24">
             <div className="grid lg:grid-cols-2 gap-8">
-              {/* Input Form */}
-              <Card className="border-0 shadow-2xl bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 overflow-hidden">
-                  <CardHeader className="flex flex-col gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-                  <CardTitle className="text-2xl flex items-center gap-2">
-                    <FileText className="h-6 w-6" />
-                    Input Parameters
-                  </CardTitle>
-                  <CardDescription className="mt-2 text-blue-100 text-base">
-                    Adjust parameters using interactive sliders to predict claim probability
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-8 space-y-8">
+              <div className="space-y-6">
+                {/* Input Form */}
+                <Card className="border-0 shadow-2xl bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 overflow-hidden">
+                    <CardHeader className="flex flex-col gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                    <CardTitle className="text-2xl flex items-center gap-2">
+                      <FileText className="h-6 w-6" />
+                      Input Parameters
+                    </CardTitle>
+                    <CardDescription className="mt-2 text-blue-100 text-base">
+                      Adjust parameters using interactive sliders to predict claim probability
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-8 space-y-8">
                   {/* Policy Details */}
                   <div>
                     <h3 className="text-base font-bold text-slate-900 mb-5 flex items-center gap-3 uppercase tracking-wider">
@@ -485,9 +486,11 @@ export default function Home() {
                   )}
                 </CardContent>
               </Card>
+              </div>
 
-              {/* Output Panel */}
-              <Card className="border-0 shadow-2xl bg-gradient-to-br from-white via-slate-50/50 to-indigo-50/30 overflow-hidden">
+              {/* Output Panel - Sticky on right */}
+              <div className="lg:sticky lg:top-32 lg:h-fit">
+                <Card className="border-0 shadow-2xl bg-gradient-to-br from-white via-slate-50/50 to-indigo-50/30 overflow-hidden">
                   <CardHeader className="flex flex-col gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
                   <CardTitle className="text-2xl flex items-center gap-2">
                     <BarChart3 className="h-6 w-6" />
@@ -676,6 +679,7 @@ export default function Home() {
                   )}
                 </CardContent>
               </Card>
+              </div>
             </div>
           </section>
 
