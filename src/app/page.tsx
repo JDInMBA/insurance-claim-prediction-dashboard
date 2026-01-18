@@ -15,6 +15,8 @@ import { Loader2, TrendingUp, Shield, AlertTriangle, CheckCircle2, Code2, BarCha
 import { cn } from '@/lib/utils'
 import './pendulum.css'
 
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 // Types for API response
 interface PredictionResponse {
   claim_probability: number
@@ -57,33 +59,42 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null)
 
   const handlePredict = async () => {
-    setLoading(true)
-    setError(null)
-    setPrediction(null)
+  setLoading(true)
+  setError(null)
+  setPrediction(null)
 
-    try {
-      const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/predict`
-      console.log("API URL:", API_URL)
-      const response = await fetch(API_URL, {
+  try {
+    const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/predict`
+    console.log("API URL:", API_URL)
+
+    // Run API call and delay in parallel
+    const [response] = await Promise.all([
+      fetch(API_URL, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
-      })
+        body: JSON.stringify(formData),
+      }),
+      sleep(5000), // 👈 FORCE 5-second loading animation
+    ])
 
-      if (!response.ok) {
-        throw new Error('Failed to get prediction from the model')
-      }
-
-      const data: PredictionResponse = await response.json()
-      setPrediction(data)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred while processing your request')
-    } finally {
-      setLoading(false)
+    if (!response.ok) {
+      throw new Error("Failed to get prediction from the model")
     }
+
+    const data: PredictionResponse = await response.json()
+    setPrediction(data)
+  } catch (err) {
+    setError(
+      err instanceof Error
+        ? err.message
+        : "An error occurred while processing your request"
+    )
+  } finally {
+    setLoading(false)
   }
+}
 
   const getRiskBadgeColor = (risk: string) => {
     switch (risk) {
