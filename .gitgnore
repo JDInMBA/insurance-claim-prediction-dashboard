@@ -1,0 +1,60 @@
+# =========================
+# Python / ML
+# =========================
+venv/
+.env
+.env.*
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Pickled / trained models
+model.pkl
+*.joblib
+
+# =========================
+# Node / Next.js
+# =========================
+node_modules/
+.next/
+out/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Next.js Environment
+# =========================
+.env.local
+.env.production
+.env.development
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Build / Cache
+# =========================
+dist/
+build/
+.cache/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Misc
+# =========================
+coverage/
